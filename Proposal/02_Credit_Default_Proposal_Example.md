@@ -7,7 +7,7 @@
 # Credit Card Default Prediction: Comparing Simple Models and Decision Thresholds
 
 **Course:** MH6805 Machine Learning in Finance  
-**Group members:** [Name 1], [Name 2], [Name 3]  
+**Group members:** Shi Xi, Li Erteng, Jiang Chengrui  
 **Submission date:** [Confirm against the latest course announcement]
 
 ## 1. Motivation and Research Question
