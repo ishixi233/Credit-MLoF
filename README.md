@@ -39,3 +39,33 @@
 ## 数据来源
 
 UCI **Default of Credit Card Clients**。来源与引用信息见英文 Proposal；实际数据规模、字段和编码在实验前统一核验。
+
+## 后续文件放在哪里？
+
+以下目录已建好，按实际进度逐步加入文件。空目录中的 `.gitkeep` 仅用于让 GitHub 显示目录，有实际文件后可删除。
+
+| 目录 | 用途 |
+|---|---|
+| `data/raw/` | 后续新增的原始数据；当前 Excel 原文件仍在仓库根目录 |
+| `data/processed/` | 清洗和预处理后的数据 |
+| `data/splits/` | 全组统一的训练、验证、测试划分索引 |
+| `docs/` | 数据字典、会议记录与分工说明 |
+| `configs/` | 随机种子、模型参数和实验配置 |
+| `src/data/` | 数据读取、清洗与划分代码 |
+| `src/features/` | 特征编码和预处理代码 |
+| `src/models/` | 六个模型与基准模型的训练代码 |
+| `src/evaluation/` | 统一指标计算和阈值分析代码 |
+| `src/visualization/` | 绘图代码 |
+| `notebooks/` | 探索性分析与模型实验笔记本 |
+| `scripts/` | 运行数据处理、训练和评估的入口脚本 |
+| `models/` | 训练完成的模型及预处理器 |
+| `results/experiments/` | 实验配置、运行日志与参数比较记录 |
+| `results/predictions/` | 验证集与测试集预测结果 |
+| `results/tables/` | 指标汇总与对照表 |
+| `results/figures/` | 结果图与阈值曲线 |
+| `report/` | 最终报告草稿与提交版本 |
+| `slides/` | 汇报 PPT 与演讲备注 |
+| `references/` | 参考文献与引用记录 |
+| `tests/` | 数据处理和评价函数的检查代码 |
+
+现有 `Proposal/` 继续存放研究计划；根目录的 `default of credit card clients.xls` 保持原位置，避免已有链接失效。当前目录仅为项目骨架，不代表已经完成训练或分析。
