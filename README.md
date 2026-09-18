@@ -2,39 +2,45 @@
 
 这是我们 **MH6805 Machine Learning in Finance** 小组项目的共享仓库，用来统一管理 Proposal、数据和后续实验代码。
 
+**组员：Shi Xi、Li Erteng、Jiang Chengrui。**
+
 ## 我们要做什么？
 
 使用信用卡客户的历史信息预测下一月是否违约，比较不同分类模型，并研究调整分类阈值后，**漏掉违约客户**和**误报正常客户**之间的权衡。
 
-目前处于 **Proposal 与实验准备阶段**：仓库已有研究计划和原始数据文件，尚未加入模型代码或实验结果。
+目前处于 **Proposal 与实验准备阶段**：英文稿、中文说明和按教师模板编译的 3 页 PDF 已更新，仓库已有原始数据文件，尚未加入模型代码或实验结果。
 
 ## 先看哪些文件？
 
 | 文件 | 用途 |
 |---|---|
-| [英文 Proposal 草稿](Proposal/02_Credit_Default_Proposal_Example.md) | 了解研究问题、方法和评价计划；讨论后补充姓名、分工与日期 |
+| [英文 Proposal 正式稿](Proposal/02_Credit_Default_Proposal.md) | Markdown 正式正文，包含研究设计、三人分工与计划 |
+| [Proposal PDF](Proposal/LaTeX/Credit_Default_Proposal.pdf) | 按教师 LaTeX 模板排版，共 3 页，含参考文献 |
+| [LaTeX 源码](Proposal/LaTeX/Credit_Default_Proposal.tex) · [编译说明](Proposal/LaTeX/README.md) | 使用 MacTeX 或 TeXShop 编辑和重新编译 |
+| [中文说明](Proposal/04_Proposal_中文说明.md) | Markdown 说明文档，解释指标、阈值分析及具体执行安排 |
 | [项目总体工作流程](Proposal/03_信用卡违约项目总体工作流程.md) | 查看从数据准备到报告展示的具体步骤 |
 | [英文 Proposal 模板](Proposal/01_Proposal_English_Template.md) | 修改结构和表述时参考 |
 | [选题与使用说明](Proposal/00_选题筛选与使用说明.md) | 查看前期选题背景和文档说明 |
 | [原始数据文件](<default of credit card clients.xls>) | 后续全组共用的数据，保留原文件，清洗结果另存 |
+| [教师项目要求](<Proposal/Group Project Guideline.pdf>) · [课堂总结](<Proposal/Group Project Summary.pdf>) | 核对课程要求和评价流程；具体日期以当期通知为准 |
 
-建议先读 **英文 Proposal 草稿**，再看 **项目总体工作流程**。文档中的方案与分工仍需全组确认。
+建议先读 **中文说明** 和 **英文提交稿**，再按 **项目总体工作流程** 开始实验。当前方案以正式英文正文为准。
 
-## 暂定实验方案
+## 当前实验方案
 
 - **模型**：Logistic Regression、Gaussian Naive Bayes、KNN、Decision Tree、Random Forest、AdaBoost；另设多数类基准。
-- **数据划分**：训练 / 验证 / 测试 = 60% / 20% / 20%，全组共用固定划分。
-- **评价**：以 AP（Average Precision）为主，结合 ROC-AUC、precision、recall 和混淆矩阵，不只看准确率。
-- **扩展分析**：比较默认阈值 0.5 与验证集选出的阈值。草稿中的漏报 / 误报成本比 5:1 是待确认的情景假设。
-- **分工**：暂按每人两个模型安排，报告和展示共同完成；具体分配见 Proposal。
+- **数据划分**：70% 训练开发集、30% 独立测试集；训练部分内部进行五折分层交叉验证，全组共用划分与验证折。
+- **评价**：用五折平均 AP（Average Precision）选配置，最终报告测试 AP、ROC-AUC、分类错误率、precision、recall 和混淆矩阵。
+- **扩展分析**：比较默认阈值 0.50 与折外验证预测选出的阈值。漏报 / 误报成本比固定为 5:1，引用 German Credit 成本矩阵作为使用先例，仅作为示例情景。
+- **分工**：Shi Xi 负责 Logistic Regression 和 Gaussian Naive Bayes；Li Erteng 负责 KNN 和 Decision Tree；Jiang Chengrui 负责 Random Forest 和 AdaBoost。报告和展示共同完成。
 
 ## 大家接下来做什么？
 
-1. 阅读 Proposal，讨论并确认研究设计、模型分工和时间安排。
+1. 阅读正式 Proposal 和中文说明，核对各自任务和阶段安排。
 2. 一起核对数据字段，统一清洗规则、数据划分与评价方式。
 3. 跑通共同基准后，再分别实现各自负责的模型。
 
-沟通和任务提醒放在群里，正式文件统一保存在这个仓库。修改前先同步最新版本；较大的修改使用独立分支，通过 Pull Request 让组员检查后合并。参数和阈值在验证集上选择，测试集留到方案确定后再统一评估。
+沟通和任务提醒放在群里，正式文件统一保存在这个仓库。修改前先同步最新版本；较大的修改使用独立分支，通过 Pull Request 让组员检查后合并。参数和阈值在训练部分内部选择，随后在完整 70% 上拟合最终模型并冻结；30% 测试集留到方案确定后再统一评估。
 
 ## 数据来源
 

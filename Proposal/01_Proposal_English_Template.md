@@ -1,6 +1,6 @@
 # 01 Proposal_English_Template
 
-[**返回导航**](00_选题筛选与使用说明.md) · [**上一章**](00_选题筛选与使用说明.md) · [**下一章**](02_Credit_Default_Proposal_Example.md)
+[**返回导航**](00_选题筛选与使用说明.md) · [**上一章**](00_选题筛选与使用说明.md) · [**下一章**](02_Credit_Default_Proposal.md)
 
 > **Working template for discussion, not an official course form.** Replace square-bracketed placeholders and remove writing prompts before submission. Do not report experiments that have not been performed. Confirm the submission date, format and length against the latest course announcement.
 
@@ -116,4 +116,4 @@ All members will use a shared dataset split and evaluation procedure and will co
 
 ---
 
-[**返回导航**](00_选题筛选与使用说明.md) · [**上一章**](00_选题筛选与使用说明.md) · [**下一章**](02_Credit_Default_Proposal_Example.md)
+[**返回导航**](00_选题筛选与使用说明.md) · [**上一章**](00_选题筛选与使用说明.md) · [**下一章**](02_Credit_Default_Proposal.md)
