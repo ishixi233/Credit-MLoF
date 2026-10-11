@@ -1,0 +1,15 @@
+{
+  "model": "logistic",
+  "params": {
+    "C_reg": 1.0,
+    "pay_onehot": true
+  },
+  "n_configs": 6,
+  "cv_ap_mean": 0.5435484529500899,
+  "cv_ap_std": 0.007502238825976334,
+  "cv_roc_auc_mean": 0.7687202412014712,
+  "cv_roc_auc_std": 0.004549427434744076,
+  "cv_brier_mean": 0.1364641701245761,
+  "oof_brier_skill": 0.20802673144072947,
+  "fit_seconds_mean": 0.03681470839655958
+}

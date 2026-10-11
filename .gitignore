@@ -12,3 +12,6 @@ venv/
 .env
 .env.*
 !.env.example
+
+# 往届样例材料，仅本地参考，不上传
+Final Sample/
