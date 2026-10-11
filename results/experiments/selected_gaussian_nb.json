@@ -1,0 +1,14 @@
+{
+  "model": "gaussian_nb",
+  "params": {
+    "pay_onehot": false
+  },
+  "n_configs": 1,
+  "cv_ap_mean": 0.48649534792260807,
+  "cv_ap_std": 0.014518669509547442,
+  "cv_roc_auc_mean": 0.73412264305275,
+  "cv_roc_auc_std": 0.00752930347107611,
+  "cv_brier_mean": 0.2855360816441964,
+  "oof_brier_skill": -0.6571562155868735,
+  "fit_seconds_mean": 0.006666183198103681
+}
