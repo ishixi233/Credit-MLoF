@@ -1,0 +1,14 @@
+{
+  "model": "adaboost",
+  "params": {
+    "learning_rate": 0.1
+  },
+  "n_configs": 3,
+  "cv_ap_mean": 0.5361661123268954,
+  "cv_ap_std": 0.004123036236407001,
+  "cv_roc_auc_mean": 0.7692070921656553,
+  "cv_roc_auc_std": 0.00529193566435982,
+  "cv_brier_mean": 0.13940596878597739,
+  "oof_brier_skill": 0.19095437843479324,
+  "fit_seconds_mean": 2.1602930800057947
+}
