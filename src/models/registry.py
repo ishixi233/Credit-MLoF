@@ -7,6 +7,7 @@ grid 在实验前写定，较简单的配置放前面（平均 AP 并列时取�
 from sklearn.dummy import DummyClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -31,6 +32,25 @@ def logistic(C_reg: float, pay_onehot: bool):
 
 def gaussian_nb(pay_onehot: bool):
     return Pipeline([("prep", make_preprocessor(scale=True, pay_onehot=pay_onehot)), ("clf", GaussianNB())])
+
+
+def knn(n_neighbors: int):
+    """距离和投票权重固定为默认（欧氏距离、等权投票），只调 k。"""
+    return Pipeline(
+        [
+            ("prep", make_preprocessor(scale=True)),
+            ("clf", KNeighborsClassifier(n_neighbors=n_neighbors)),
+        ]
+    )
+
+
+def decision_tree(max_depth: int):
+    return Pipeline(
+        [
+            ("prep", make_preprocessor(scale=False)),
+            ("clf", DecisionTreeClassifier(max_depth=max_depth, random_state=C.SEED)),
+        ]
+    )
 
 
 def random_forest(max_depth):
@@ -71,7 +91,9 @@ MODELS = {
     # 只用一套默认配置。PAY one-hot 试过：五折 AP 0.491 对 0.487，差距小于折间标准差（约 0.015），
     # 且 0/1 变量不符合高斯假设、会把八成客户的分数压到接近 0，所以不采用。
     "gaussian_nb": {"build": gaussian_nb, "grid": [{"pay_onehot": False}]},
-    
+    # k 越大决策越平滑，较简单的放前面
+    "knn": {"build": knn, "grid": [{"n_neighbors": 61}, {"n_neighbors": 31}, {"n_neighbors": 11}]},
+    "decision_tree": {"build": decision_tree, "grid": [{"max_depth": 3}, {"max_depth": 5}, {"max_depth": 8}]},
     "random_forest": {
         "build": random_forest,
         "grid": [
@@ -89,7 +111,4 @@ MODELS = {
             {"learning_rate": 1.0}
         ],
     },
-    # Li Erteng: "knn", "decision_tree"
-    # Jiang Chengrui: "random_forest", "adaboost"
 }
-

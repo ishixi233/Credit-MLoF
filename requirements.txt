@@ -1,6 +1,8 @@
-numpy>=2.0
-pandas>=2.2
-scikit-learn>=1.6
-xlrd>=2.0
-matplotlib>=3.9
-pytest>=8.0
+# 固定精确版本：随机森林等模型的结果会随库版本变化，全组必须用同一套环境
+numpy==2.5.4
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+xlrd==2.0.2
+matplotlib==3.11.2
+pytest==9.1.1

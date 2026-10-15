@@ -8,5 +8,5 @@
   "cv_roc_auc_std": 0.0,
   "cv_brier_mean": 0.17230940997695415,
   "oof_brier_skill": -9.448519255883525e-08,
-  "fit_seconds_mean": 0.009107058198424056
+  "fit_seconds_mean": 0.0050775915980921125
 }
