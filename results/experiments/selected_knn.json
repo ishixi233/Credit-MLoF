@@ -1,14 +1,14 @@
 {
   "model": "knn",
   "params": {
-    "n_neighbors": 61
+    "n_neighbors": 201
   },
-  "n_configs": 3,
-  "cv_ap_mean": 0.512147600390298,
-  "cv_ap_std": 0.005764854225513053,
-  "cv_roc_auc_mean": 0.7523587373360228,
-  "cv_roc_auc_std": 0.00421810795196686,
-  "cv_brier_mean": 0.1406129661268357,
-  "oof_brier_skill": 0.18394836064123288,
-  "fit_seconds_mean": 0.005308250000234693
+  "n_configs": 6,
+  "cv_ap_mean": 0.5161768551406538,
+  "cv_ap_std": 0.006943317483611708,
+  "cv_roc_auc_mean": 0.7582916494196914,
+  "cv_roc_auc_std": 0.004536589660176963,
+  "cv_brier_mean": 0.14178806988136178,
+  "oof_brier_skill": 0.17712948473338685,
+  "fit_seconds_mean": 0.00806634180044057
 }
