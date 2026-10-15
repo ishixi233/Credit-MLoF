@@ -91,8 +91,9 @@ MODELS = {
     # 只用一套默认配置。PAY one-hot 试过：五折 AP 0.491 对 0.487，差距小于折间标准差（约 0.015），
     # 且 0/1 变量不符合高斯假设、会把八成客户的分数压到接近 0，所以不采用。
     "gaussian_nb": {"build": gaussian_nb, "grid": [{"pay_onehot": False}]},
-    # k 越大决策越平滑，较简单的放前面
-    "knn": {"build": knn, "grid": [{"n_neighbors": 61}, {"n_neighbors": 31}, {"n_neighbors": 11}]},
+    # k 越大决策越平滑，较简单的放前面。原定 k = 61、31、11，最优落在边界 61 上，
+    # 冻结前按事先说明扩展一次，加入 101、151、201；之后不再扩展。
+    "knn": {"build": knn, "grid": [{"n_neighbors": k} for k in (201, 151, 101, 61, 31, 11)]},
     "decision_tree": {"build": decision_tree, "grid": [{"max_depth": 3}, {"max_depth": 5}, {"max_depth": 8}]},
     "random_forest": {
         "build": random_forest,
