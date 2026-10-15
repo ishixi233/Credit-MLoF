@@ -8,15 +8,15 @@
 
 使用信用卡客户的历史信息预测下一月是否违约，比较不同分类模型，并研究调整分类阈值后，**漏掉违约客户**和**误报正常客户**之间的权衡。
 
-目前处于 **实验阶段**：Proposal 已提交并收到评语；共享的数据划分、预处理、评价函数和交叉验证流程已就绪，基准、Logistic Regression 和 Gaussian NB 已在开发集上跑通。测试集尚未使用。
+目前处于 **实验阶段**：Proposal 已提交并收到评语；共享的数据划分、预处理、评价函数和交叉验证流程已就绪，六个模型和常数基准已在开发集五折上跑完，折外预测已提交。测试集尚未使用。
 
 **Proposal 之后改了什么、还剩什么要做，见 [Proposal 之后的修改说明与工作计划](docs/Proposal后修改说明与工作计划.md)**，剩余任务和截止日期在该文档开头。
 
 ## 怎么运行
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+python -m venv .venv && source .venv/bin/activate   # 已在 Python 3.14 上测试
+pip install -r requirements.txt   # 版本是固定的，不要改，否则结果会和仓库里的不一致
 python -m pytest                      # 检查划分和评价函数
 python scripts/03_run_cv.py logistic  # 在共享五折上跑一个模型
 ```
