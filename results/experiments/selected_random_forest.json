@@ -1,0 +1,14 @@
+{
+  "model": "random_forest",
+  "params": {
+    "max_depth": 10
+  },
+  "n_configs": 3,
+  "cv_ap_mean": 0.556555975562907,
+  "cv_ap_std": 0.005583771891186518,
+  "cv_roc_auc_mean": 0.7806217353131423,
+  "cv_roc_auc_std": 0.006655577543456394,
+  "cv_brier_mean": 0.13470599863243257,
+  "oof_brier_skill": 0.21823230996914744,
+  "fit_seconds_mean": 0.7581290800007991
+}
