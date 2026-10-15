@@ -1,0 +1,14 @@
+{
+  "model": "decision_tree",
+  "params": {
+    "max_depth": 5
+  },
+  "n_configs": 3,
+  "cv_ap_mean": 0.511117806456486,
+  "cv_ap_std": 0.007560378172972625,
+  "cv_roc_auc_mean": 0.7557655727925516,
+  "cv_roc_auc_std": 0.004608936422714415,
+  "cv_brier_mean": 0.1375220303406214,
+  "oof_brier_skill": 0.20188894615976938,
+  "fit_seconds_mean": 0.05237989140150603
+}
