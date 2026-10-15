@@ -8,6 +8,8 @@ from sklearn.dummy import DummyClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 from src import config as C
 from src.features.preprocess import make_preprocessor
@@ -31,6 +33,35 @@ def gaussian_nb(pay_onehot: bool):
     return Pipeline([("prep", make_preprocessor(scale=True, pay_onehot=pay_onehot)), ("clf", GaussianNB())])
 
 
+def random_forest(max_depth):
+    return Pipeline([
+        ("prep", make_preprocessor(scale=False)),
+        ("clf", RandomForestClassifier(
+            n_estimators=200,
+            max_depth=max_depth,
+            min_samples_leaf=5,
+            max_features="sqrt",
+            random_state=C.SEED,
+            n_jobs=-1
+        ))
+    ])
+
+
+def adaboost(learning_rate):
+    return Pipeline([
+        ("prep", make_preprocessor(scale=False)),
+        ("clf", AdaBoostClassifier(
+            estimator=DecisionTreeClassifier(
+                max_depth=1,
+                random_state=C.SEED
+            ),
+            n_estimators=100,
+            learning_rate=learning_rate,
+            random_state=C.SEED
+        ))
+    ])
+
+
 MODELS = {
     "baseline_rate": {"build": baseline_rate, "grid": [{}]},
     "logistic": {
@@ -40,6 +71,25 @@ MODELS = {
     # 只用一套默认配置。PAY one-hot 试过：五折 AP 0.491 对 0.487，差距小于折间标准差（约 0.015），
     # 且 0/1 变量不符合高斯假设、会把八成客户的分数压到接近 0，所以不采用。
     "gaussian_nb": {"build": gaussian_nb, "grid": [{"pay_onehot": False}]},
+    
+    "random_forest": {
+        "build": random_forest,
+        "grid": [
+            {"max_depth": 5},
+            {"max_depth": 10},
+            {"max_depth": None}
+        ],
+    },
+
+    "adaboost": {
+        "build": adaboost,
+        "grid": [
+            {"learning_rate": 0.1},
+            {"learning_rate": 0.5},
+            {"learning_rate": 1.0}
+        ],
+    },
     # Li Erteng: "knn", "decision_tree"
     # Jiang Chengrui: "random_forest", "adaboost"
 }
+
