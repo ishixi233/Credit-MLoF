@@ -6,13 +6,11 @@
 
 更新于 2026-10-16。日期按"报告约 10/23 提交"倒推：展示约 10/21，PPT 约 10/20 中午交。三个日期以 NTULearn 通知为准。
 
-**全部实验已完成**：六个模型的交叉验证、阈值与成本比分析、校准分析、冻结、**测试集评估（已运行一次，结果见第 3a 节）**。接下来只剩解释、图、PPT 和报告，不再改任何模型或阈值。
+**全部实验、特征解释和报告用图已完成**（第 3a、3b 节）。接下来只剩 PPT 和报告的写作，不再改任何模型、阈值或图的数据。
 
 | 截止 | 事项 | 负责人 |
 |---|---|---|
-| 10/17 | 特征解释：Logistic 系数、树模型的特征重要性，从 `models/*.joblib` 提取（4.4） | Shi Xi：Logistic；Jiang Chengrui：RF、AdaBoost；Li Erteng：决策树 |
-| 10/18 | 正文图：成本相对平凡策略的改善百分比（按成本比，用 `test_decisions.csv`）、前三名 ROC 曲线加等成本线、随机森林在默认与冻结阈值下的混淆矩阵；训练集违约比例图 | Jiang Chengrui 成本与 ROC；Shi Xi 其余 |
-| 10/18 | PPT 初稿；报告 Data、Methods、Design 三节初稿（沿用 Proposal 的 NeurIPS LaTeX 模板，放 `report/`） | 各自主笔，见第 5 节 |
+| 10/18 | PPT 初稿；报告 Data、Methods、Design 三节初稿（沿用 Proposal 的 NeurIPS LaTeX 模板，放 `report/`；图直接用 `results/figures/fig_*.pdf`） | 各自主笔，见第 5 节 |
 | 10/19 | PPT 定稿，完整排练两次并互相提问 | 全组 |
 | 约 10/20 12:00 | 交 PPT | 全组 |
 | 约 10/21 | 英文展示与 Q&A | 全组 |
@@ -124,6 +122,30 @@ CV 与测试 AP 差距都在 0.01 以内，没有明显的选择乐观。成对 
 - **r = 10 时 KNN 升到第二、AdaBoost 跌到第四**，而决策树（0.792）已经比"全部报警"（0.779）更贵，Gaussian NB 恰好等于它：成本比很大时，粗糙或校准差的分数没有价值。
 - **主情景 r = 5**：随机森林比最佳平凡策略省 29%，其余模型省 23%–27%；默认阈值 0.5 下所有模型都比平凡策略差（例如随机森林 0.752 对 0.779），说明阈值选择比模型选择更重要。
 - **阈值迁移误差很小**：冻结阈值与测试集事后最优阈值的成本差在 0.000–0.013 之间，最大的是决策树在 r = 10（0.013）和 Logistic 在 r = 5（0.010）。
+
+## 3b. 特征解释与报告用图（已完成，2026-10-16）
+
+**特征解释**（`scripts/08_feature_interpretation.py`，从 `models/*.joblib` 提取，不重新拟合）
+
+- 四个模型一致：**最近一个月的还款状态 PAY_0 是最重要的变量**。决策树的不纯度重要性有 69% 在 PAY_0，随机森林 25%，AdaBoost 48%；Logistic 系数绝对值最大的四个也都是 PAY_0 的类别：PAY_0 = 2（逾期两个月）log-odds +1.05，= 3 时 +0.98；PAY_0 = 0 时 −1.24，= −2 时 −0.96。
+- 其次是更早月份的还款状态和最近的还款金额（PAY_AMT1、PAY_AMT2），AdaBoost 对还款金额的依赖更重。
+- LIMIT_BAL 在三个树模型里都排在前八，系数为负：额度高的客户违约少。这是预测上的关联，不能读成"提额降低违约"，更可能是银行本来就给信用好的客户高额度（7.2）。
+- Logistic 的 one-hot 保留了全部类别（带 L2 正则），系数是相对于"该变量各类别的平均"，不是相对于某个被省略的基准类；不同模型的重要性量纲不同，不做跨模型的数值比较。
+- 表在 `results/tables/feature_logistic_coefficients.csv` 和 `feature_importance_trees.csv`。
+
+**图**（`scripts/09_report_figures.py`，`results/figures/fig_*`，每张 PNG + PDF；样式对齐 NeurIPS 模板：衬线字体、9 pt、通栏宽 5.5 in，`src/visualization/style.py`）
+
+| 文件 | 内容 | 建议位置 |
+|---|---|---|
+| `fig_cost_improvement` | 测试集各模型相对最佳平凡策略的成本降低百分比，按成本比 | 正文，Results |
+| `fig_roc_isocost` | 前三名 ROC 曲线，r = 1、5、10 的等成本线与冻结操作点 | 正文，Discussion |
+| `fig_calibration_test` | 测试集校准曲线 | 正文，Results |
+| `fig_thresholds_vs_ratio` | 冻结阈值随成本比的变化，对比 1/(1+r) | 正文或附录 |
+| `fig_confusion_rf` | 随机森林在 0.5 与冻结阈值（r = 5）下的混淆矩阵 | 正文或附录 |
+| `fig_feature_logistic`、`fig_feature_importance` | 系数与重要性 | 附录 |
+| `fig_class_balance`、`fig_pr_curves` | 违约比例、PR 曲线 | 附录 |
+
+另有 Chengrui 的 `oof_cost_vs_ratio.png` 等三张折外图和我的两张校准图，可作 PPT 素材。
 
 ## 4. 新增分析的做法
 
