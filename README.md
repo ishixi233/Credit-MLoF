@@ -53,7 +53,7 @@ python scripts/03_run_cv.py logistic  # 在共享五折上跑一个模型
 
 `load_test()` 在 `configs/frozen.json` 不存在时会直接报错，`07_run_test.py` 在测试预测已存在时拒绝运行：模型和阈值冻结之前不能读测试集，测试之后不能再改。
 
-数据字段和预处理约定见 [数据字典](docs/data_dictionary.md)，原始数据核查结果见 [数据核查记录](docs/data_check.md)。
+数据字段和预处理约定见 [数据字典](docs/data_dictionary.md)，原始数据核查结果见 [数据核查记录](docs/data_check.md)。报告初稿在 [report/](report/)，编译后的 PDF 为 `report/Credit_Default_Report.pdf`。
 
 ## 先看哪些文件？
 
@@ -115,7 +115,7 @@ UCI **Default of Credit Card Clients**。来源与引用信息见英文 Proposal
 | `results/predictions/` | 验证集与测试集预测结果 |
 | `results/tables/` | 指标汇总与对照表 |
 | `results/figures/` | 结果图与阈值曲线 |
-| `report/` | 最终报告草稿与提交版本 |
+| `report/` | 最终报告（LaTeX，沿用 Proposal 模板；`latexmk -pdf Credit_Default_Report.tex` 编译） |
 | `slides/` | 汇报 PPT 与演讲备注 |
 | `references/` | 参考文献（BibTeX） |
 | `tests/` | 数据处理和评价函数的检查代码 |

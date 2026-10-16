@@ -6,11 +6,12 @@
 
 更新于 2026-10-16。日期按"报告约 10/23 提交"倒推：展示约 10/21，PPT 约 10/20 中午交。三个日期以 NTULearn 通知为准。
 
-**全部实验、特征解释和报告用图已完成**（第 3a、3b 节）。接下来只剩 PPT 和报告的写作，不再改任何模型、阈值或图的数据。
+**全部实验、特征解释、报告用图和报告初稿已完成**（第 3a、3b、3c 节）。接下来是修改报告、做 PPT，不再改任何模型、阈值或图的数据。
 
 | 截止 | 事项 | 负责人 |
 |---|---|---|
-| 10/18 | PPT 初稿；报告 Data、Methods、Design 三节初稿（沿用 Proposal 的 NeurIPS LaTeX 模板，放 `report/`；图直接用 `results/figures/fig_*.pdf`） | 各自主笔，见第 5 节 |
+| 10/17 | 各自通读 `report/Credit_Default_Report.pdf`，修改自己模型的段落（Methods、Results）和贡献说明；用 `\todo{}` 标出的两处必须处理 | 全组 |
+| 10/18 | PPT 初稿（叙事沿报告：问题 → 协议 → 排序 → 校准 → 阈值与成本 → 名次对照 → 局限）；附录 A 的变量表 | 各自主笔，见第 5 节 |
 | 10/19 | PPT 定稿，完整排练两次并互相提问 | 全组 |
 | 约 10/20 12:00 | 交 PPT | 全组 |
 | 约 10/21 | 英文展示与 Q&A | 全组 |
@@ -148,6 +149,20 @@ CV 与测试 AP 差距都在 0.01 以内，没有明显的选择乐观。成对 
 | `fig_class_balance`、`fig_pr_curves` | 违约比例、PR 曲线 | 附录 |
 
 另有 Chengrui 的 `oof_cost_vs_ratio.png` 等三张折外图和我的两张校准图，可作 PPT 素材。
+
+## 3c. 报告初稿（2026-10-16）
+
+`report/Credit_Default_Report.tex`，沿用 Proposal 的 NeurIPS 2021 模板，正文加参考文献 7 页（上限 7 页），附录 3 页不计。编译：
+
+```bash
+cd report && latexmk -pdf -interaction=nonstopmode Credit_Default_Report.tex
+```
+
+写法按研究论文的惯例组织，不是逐条回答评语：Introduction（问题、相关工作、贡献）→ Data → Methods（模型与预处理、评价协议）→ Results（排序 / 校准 / 阈值与成本 / 名次对照 / 特征）→ Discussion（为什么 AP 最高不等于成本最低、从结果到放贷决策、局限）→ Conclusion → 贡献与计划 → 参考文献；附录放数据字典、参数网格、主情景决策表、特征解释图、补充图、可复现说明。老师的三条要求和 Proposal 的承诺在 Introduction 第二段、Methods 和 Discussion 里有呼应，但不单列。
+
+参考文献 14 条（`references/references.bib`）：数据集与原始论文、信用评分基准、成本敏感学习、ROC 等成本线、PR 与 ROC 的关系、校准、Brier、随机森林、AdaBoost、scikit-learn、bootstrap、选择偏差。
+
+待处理：两处 `\todo{}`（贡献说明措辞需全组确认；附录 A 的变量表待从数据字典复制）。正文已贴着 7 页上限，增加内容必须等量删减。
 
 ## 4. 新增分析的做法
 
