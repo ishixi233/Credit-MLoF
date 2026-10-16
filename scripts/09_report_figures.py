@@ -47,7 +47,7 @@ def fig_class_balance():
 
 def fig_cost_improvement():
     d = pd.read_csv(C.TABLE_DIR / "test_decisions.csv")
-    fig, ax = plt.subplots(figsize=FULL)
+    fig, ax = plt.subplots(figsize=(4.4, 2.4))
     for m in MODEL_ORDER:
         s = d[d.model == m].sort_values("cost_ratio")
         ax.plot(s.cost_ratio, s.improvement_vs_trivial_pct, marker="o", color=COLORS[m], label=LABELS[m])
@@ -55,12 +55,12 @@ def fig_cost_improvement():
     ax.set_xticks(list(C.COST_RATIOS))
     ax.set_xlabel("Cost ratio $r$ (one missed default = $r$ false alarms)")
     ax.set_ylabel("Cost reduction vs. best trivial policy (%)")
-    ax.set_title("Test-set weighted cost at frozen thresholds, relative to flagging everyone / no one")
+    ax.set_title("Test cost at frozen thresholds vs. better trivial policy")
     ax.set_ylim(-4, 46)
     ax.axvline(3.52, color="gray", ls=":", lw=0.8)
-    ax.text(3.35, 45, "best trivial policy: flag no one", ha="right", va="top", fontsize=7, color="gray")
-    ax.text(3.7, 45, "best trivial policy: flag everyone", ha="left", va="top", fontsize=7, color="gray")
-    ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.22))
+    ax.text(3.35, 45, "ref.: flag no one", ha="right", va="top", fontsize=7, color="gray")
+    ax.text(3.7, 45, "ref.: flag everyone", ha="left", va="top", fontsize=7, color="gray")
+    ax.legend(ncol=2, loc="upper right")
     save(fig, C.FIG_DIR / "fig_cost_improvement")
 
 
@@ -69,7 +69,7 @@ def fig_roc_isocost(preds):
     y = preds["random_forest"].y.to_numpy()
     pi = y.mean()
     top = ("random_forest", "adaboost", "logistic")
-    fig, ax = plt.subplots(figsize=(FULL[0], 3.6))
+    fig, ax = plt.subplots(figsize=(3.1, 2.8))
     for m in top:
         fpr, tpr, _ = roc_curve(y, preds[m].score)
         ax.plot(fpr, tpr, color=COLORS[m], label=LABELS[m])
@@ -86,8 +86,8 @@ def fig_roc_isocost(preds):
         ax.plot([], [], marker=mk, color="gray", ls="", mec="black", mew=0.5, label=f"frozen point, $r={r}$")
     ax.plot([0, 1], [0, 1], color="lightgray", lw=0.6)
     ax.set(xlim=(0, 1), ylim=(0, 1), xlabel="False positive rate", ylabel="True positive rate (recall)")
-    ax.set_title("ROC curves of the top three models with iso-cost lines (slope $(1-\\pi)/(r\\pi)$, through RF)")
-    ax.legend(loc="lower right", ncol=2)
+    ax.set_title("ROC curves with iso-cost lines (slope $(1-\\pi)/(r\\pi)$)")
+    ax.legend(loc="lower right", ncol=2, fontsize=7)
     save(fig, C.FIG_DIR / "fig_roc_isocost")
 
 
@@ -126,7 +126,7 @@ def fig_calibration_test(preds):
 
 def fig_thresholds_vs_ratio():
     frozen = json.loads(C.FROZEN_FILE.read_text())
-    fig, ax = plt.subplots(figsize=FULL)
+    fig, ax = plt.subplots(figsize=(HALF[0] + 0.4, HALF[0] + 0.4))
     rs = list(C.COST_RATIOS)
     for m in MODEL_ORDER:
         ts = [frozen["models"][m]["thresholds"][str(r)] for r in rs]
@@ -134,8 +134,8 @@ def fig_thresholds_vs_ratio():
     ax.plot(rs, [1 / (1 + r) for r in rs], "k--", lw=0.9, label="$1/(1+r)$ if calibrated")
     ax.set_xticks(rs)
     ax.set(xlabel="Cost ratio $r$", ylabel="Selected alert threshold (out-of-fold)", ylim=(-0.02, 1.02))
-    ax.set_title("Cost-minimising thresholds move with $r$; distance from $1/(1+r)$ reflects miscalibration")
-    ax.legend(ncol=4, loc="upper center", bbox_to_anchor=(0.5, -0.22))
+    ax.set_title("Thresholds versus cost ratio")
+    ax.legend(loc="upper right")
     save(fig, C.FIG_DIR / "fig_thresholds_vs_ratio")
 
 

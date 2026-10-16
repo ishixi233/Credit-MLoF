@@ -15,3 +15,13 @@ venv/
 
 # 往届样例材料，仅本地参考，不上传
 Final Sample/
+
+# LaTeX 编译中间文件
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
