@@ -53,7 +53,7 @@ python scripts/03_run_cv.py logistic  # 在共享五折上跑一个模型
 
 `load_test()` 在 `configs/frozen.json` 不存在时会直接报错，`07_run_test.py` 在测试预测已存在时拒绝运行：模型和阈值冻结之前不能读测试集，测试之后不能再改。
 
-数据字段和预处理约定见 [数据字典](docs/data_dictionary.md)，原始数据核查结果见 [数据核查记录](docs/data_check.md)。报告初稿在 [report/](report/)，编译后的 PDF 为 `report/Credit_Default_Report.pdf`。
+数据字段和预处理约定见 [数据字典](docs/data_dictionary.md)，原始数据核查结果见 [数据核查记录](docs/data_check.md)。报告初稿在 [report/](report/)：[LaTeX 源](report/Credit_Default_Report.tex)（提交版，编译后为 `Credit_Default_Report.pdf`）、[Markdown 版](report/Credit_Default_Report.md)、[中文说明](report/报告中文说明.md)。
 
 ## 先看哪些文件？
 
