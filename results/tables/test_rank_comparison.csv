@@ -1,0 +1,7 @@
+model,ap,ap_rank,cost_rank_r1,cost_rank_r2,cost_rank_r3,cost_rank_r5,cost_rank_r10
+random_forest,0.5610419346691022,1,2,2,1,1,1
+adaboost,0.5388911905156022,2,4,3,2,2,4
+logistic,0.5384674326518673,3,3,1,3,3,3
+knn,0.5214702350413132,4,5,5,4,4,2
+decision_tree,0.5078384428494432,5,1,4,5,5,6
+gaussian_nb,0.4966091430719317,6,6,6,6,6,5
