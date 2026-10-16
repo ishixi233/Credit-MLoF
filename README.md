@@ -47,6 +47,8 @@ python scripts/03_run_cv.py logistic  # 在共享五折上跑一个模型
 | `05_calibration.py` | Brier、校准曲线、分数分布 | 折外预测 |
 | `06_freeze.py` | 写冻结清单 `configs/frozen.json` | 选定参数与阈值表 |
 | `07_run_test.py` | 在完整开发集上重拟合，评价测试集，**只运行一次** | 冻结清单、测试集 |
+| `08_feature_interpretation.py` | Logistic 系数、树模型特征重要性 | `models/*.joblib` |
+| `09_report_figures.py` | 报告正文与附录的图（PNG + PDF，样式对齐 LaTeX 模板） | 已提交的表格与预测 |
 
 `load_test()` 在 `configs/frozen.json` 不存在时会直接报错，`07_run_test.py` 在测试预测已存在时拒绝运行：模型和阈值冻结之前不能读测试集，测试之后不能再改。
 
