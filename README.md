@@ -8,7 +8,7 @@
 
 使用信用卡客户的历史信息预测下一月是否违约，比较不同分类模型，并研究调整分类阈值后，**漏掉违约客户**和**误报正常客户**之间的权衡。
 
-目前处于 **实验阶段**：Proposal 已提交并收到评语；共享的数据划分、预处理、评价函数和交叉验证流程已就绪，六个模型和常数基准已在开发集五折上跑完，折外预测已提交。测试集尚未使用。
+目前处于 **实验阶段**：Proposal 已提交并收到评语；共享的数据划分、预处理、评价函数和交叉验证流程已就绪，六个模型的交叉验证、阈值与成本比分析、校准分析已完成，模型与阈值已冻结（`configs/frozen.json`）。测试集尚未使用，`scripts/07_run_test.py` 只运行一次。
 
 **Proposal 之后改了什么、还剩什么要做，见 [Proposal 之后的修改说明与工作计划](docs/Proposal后修改说明与工作计划.md)**，剩余任务和截止日期在该文档开头。
 
@@ -38,7 +38,17 @@ python scripts/03_run_cv.py logistic  # 在共享五折上跑一个模型
 
 评价一律调用 [src/evaluation/metrics.py](src/evaluation/metrics.py) 里的函数，不要各自重写：`ranking_metrics`（AP、ROC-AUC、Brier）、`select_threshold` 和 `cost_curve`（按成本比选阈值）、`decision_metrics`（混淆矩阵与成本）、`trivial_costs`（全报警 / 全不报警的参照成本）、`calibration_table`（校准表）。
 
-`load_test()` 在 `configs/frozen.json` 提交之前会直接报错，这是有意的：模型和阈值冻结之前不能读测试集。
+分析脚本按顺序编号，前一步的输出是后一步的输入：
+
+| 脚本 | 作用 | 读什么 |
+|---|---|---|
+| `03_run_cv.py` | 交叉验证，输出折外预测 | 开发集 |
+| `04_threshold_cost_analysis.py` | 五档成本比的阈值选择与成本比较 | 折外预测 |
+| `05_calibration.py` | Brier、校准曲线、分数分布 | 折外预测 |
+| `06_freeze.py` | 写冻结清单 `configs/frozen.json` | 选定参数与阈值表 |
+| `07_run_test.py` | 在完整开发集上重拟合，评价测试集，**只运行一次** | 冻结清单、测试集 |
+
+`load_test()` 在 `configs/frozen.json` 不存在时会直接报错，`07_run_test.py` 在测试预测已存在时拒绝运行：模型和阈值冻结之前不能读测试集，测试之后不能再改。
 
 数据字段和预处理约定见 [数据字典](docs/data_dictionary.md)，原始数据核查结果见 [数据核查记录](docs/data_check.md)。
 
