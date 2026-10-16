@@ -1,0 +1,139 @@
+{
+  "frozen_on": "2026-10-16",
+  "git_commit": "ab4d14a15f9a336f662bcecbf746dc099dd00d34",
+  "seed": 42,
+  "splits_file": "data/splits/splits.csv",
+  "cost_ratios": [
+    1,
+    2,
+    3,
+    5,
+    10
+  ],
+  "primary_ratio": 5,
+  "default_threshold": 0.5,
+  "selection_rule": "mean 5-fold AP selects params; OOF cost r*FN+FP selects threshold per ratio; ties favour fewer false alarms",
+  "models": {
+    "logistic": {
+      "params": {
+        "C_reg": 1.0,
+        "pay_onehot": true
+      },
+      "cv_ap_mean": 0.543548,
+      "thresholds": {
+        "1": 0.5239539003872449,
+        "2": 0.3072553509519398,
+        "3": 0.2157790232039333,
+        "5": 0.1647273562989432,
+        "10": 0.1077249056094407
+      },
+      "threshold_case": {
+        "1": "interior",
+        "2": "interior",
+        "3": "interior",
+        "5": "interior",
+        "10": "interior"
+      }
+    },
+    "gaussian_nb": {
+      "params": {
+        "pay_onehot": false
+      },
+      "cv_ap_mean": 0.486495,
+      "thresholds": {
+        "1": 0.9985523780222384,
+        "2": 0.9246074654115572,
+        "3": 0.8279784339113168,
+        "5": 0.6646765501798446,
+        "10": 5.823771134104959e-06
+      },
+      "threshold_case": {
+        "1": "interior",
+        "2": "interior",
+        "3": "interior",
+        "5": "interior",
+        "10": "interior"
+      }
+    },
+    "knn": {
+      "params": {
+        "n_neighbors": 201
+      },
+      "cv_ap_mean": 0.516177,
+      "thresholds": {
+        "1": 0.3159203980099502,
+        "2": 0.2512437810945273,
+        "3": 0.2313432835820895,
+        "5": 0.1666666666666666,
+        "10": 0.0771144278606964
+      },
+      "threshold_case": {
+        "1": "interior",
+        "2": "interior",
+        "3": "interior",
+        "5": "interior",
+        "10": "interior"
+      }
+    },
+    "decision_tree": {
+      "params": {
+        "max_depth": 5
+      },
+      "cv_ap_mean": 0.511118,
+      "thresholds": {
+        "1": 0.6022727272727273,
+        "2": 0.3273020600645321,
+        "3": 0.2669746149794776,
+        "5": 0.1524452986972644,
+        "10": 0.088536944372981
+      },
+      "threshold_case": {
+        "1": "interior",
+        "2": "interior",
+        "3": "interior",
+        "5": "interior",
+        "10": "interior"
+      }
+    },
+    "random_forest": {
+      "params": {
+        "max_depth": 10
+      },
+      "cv_ap_mean": 0.556793,
+      "thresholds": {
+        "1": 0.4607698520023745,
+        "2": 0.2867778494116986,
+        "3": 0.2766142073952041,
+        "5": 0.1839327899855529,
+        "10": 0.0942676698294442
+      },
+      "threshold_case": {
+        "1": "interior",
+        "2": "interior",
+        "3": "interior",
+        "5": "interior",
+        "10": "interior"
+      }
+    },
+    "adaboost": {
+      "params": {
+        "learning_rate": 0.1
+      },
+      "cv_ap_mean": 0.536166,
+      "thresholds": {
+        "1": 0.454640368938526,
+        "2": 0.3484237621227751,
+        "3": 0.2442954607928046,
+        "5": 0.1986800770897767,
+        "10": 0.1638057523828141
+      },
+      "threshold_case": {
+        "1": "interior",
+        "2": "interior",
+        "3": "interior",
+        "5": "interior",
+        "10": "interior"
+      }
+    }
+  }
+}
