@@ -49,6 +49,7 @@ python scripts/03_run_cv.py logistic  # 在共享五折上跑一个模型
 | `07_run_test.py` | 在完整开发集上重拟合，评价测试集，**只运行一次** | 冻结清单、测试集 |
 | `08_feature_interpretation.py` | Logistic 系数、树模型特征重要性 | `models/*.joblib` |
 | `09_report_figures.py` | 报告正文与附录的图（PNG + PDF，样式对齐 LaTeX 模板） | 已提交的表格与预测 |
+| `10_test_uncertainty.py` | 五档成本比的成对 bootstrap 区间；两个基准的测试表现 | 测试预测 |
 
 `load_test()` 在 `configs/frozen.json` 不存在时会直接报错，`07_run_test.py` 在测试预测已存在时拒绝运行：模型和阈值冻结之前不能读测试集，测试之后不能再改。
 
@@ -108,7 +109,6 @@ UCI **Default of Credit Card Clients**。来源与引用信息见英文 Proposal
 | `src/models/` | 六个模型与基准模型的训练代码 |
 | `src/evaluation/` | 统一指标计算和阈值分析代码 |
 | `src/visualization/` | 绘图代码 |
-| `notebooks/` | 探索性分析与模型实验笔记本 |
 | `scripts/` | 运行数据处理、训练和评估的入口脚本 |
 | `models/` | 训练完成的模型及预处理器 |
 | `results/experiments/` | 实验配置、运行日志与参数比较记录 |
@@ -117,7 +117,7 @@ UCI **Default of Credit Card Clients**。来源与引用信息见英文 Proposal
 | `results/figures/` | 结果图与阈值曲线 |
 | `report/` | 最终报告草稿与提交版本 |
 | `slides/` | 汇报 PPT 与演讲备注 |
-| `references/` | 参考文献与引用记录 |
+| `references/` | 参考文献（BibTeX） |
 | `tests/` | 数据处理和评价函数的检查代码 |
 
 现有 `Proposal/` 继续存放研究计划；根目录的 `default of credit card clients.xls` 保持原位置，避免已有链接失效。
