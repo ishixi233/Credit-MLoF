@@ -25,7 +25,7 @@ from src import config as C
 from src.evaluation.metrics import (
     cost_curve,
     decision_metrics,
-    ranking_metrics,
+
     select_threshold,
     trivial_costs,
 )
