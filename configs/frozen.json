@@ -1,6 +1,7 @@
 {
   "frozen_on": "2026-10-16",
-  "git_commit": "ab4d14a15f9a336f662bcecbf746dc099dd00d34",
+  "git_commit": "c40369ec0b149d2f4c4e6bf0dc0823fb98bcd926",
+  "git_commit_note": "history rewritten on 2026-10-17 (commit messages only, file contents unchanged); original hash ab4d14a15f9a336f662bcecbf746dc099dd00d34",
   "seed": 42,
   "splits_file": "data/splits/splits.csv",
   "cost_ratios": [

@@ -140,15 +140,15 @@ Under one leakage-controlled protocol, Random Forest ranks credit-card defaulter
 
 ## Member contributions and work plan
 
-The proposal assigned each member two models and a supporting role; the delivered work followed that plan, with the shared pipeline built first so that model work ran in parallel once the feedback compressed the four-week schedule into one.
+The proposal assigned each member two models and a supporting role, and the delivered work followed that plan; after the proposal feedback compressed the four-week schedule into one, the shared pipeline was built first so that model work ran in parallel. Overall contributions are approximately **40% (Shi Xi), 30% (Li Erteng), 30% (Jiang Chengrui)**.
 
 | Member | Models | Proposed | Delivered |
 |---|---|---|---|
-| Shi Xi | Logistic Regression; Gaussian Naive Bayes | Data checks, preprocessing and financial interpretation | Shared split, evaluation functions, cross-validation pipeline, calibration analysis, feature interpretation, report integration |
-| Li Erteng | KNN; Decision Tree | Shared split, cross-validation and experiment records | Verification of the frozen configuration, experimental-design section, rank-comparison analysis |
-| Jiang Chengrui | Random Forest; AdaBoost | Results visualisation and threshold analysis | Threshold optimisation and cost-sensitivity analysis over five ratios, out-of-fold cost figures, results on thresholds |
+| Shi Xi | Logistic Regression; Gaussian Naive Bayes | Data checks, preprocessing and financial interpretation | In addition: shared split and evaluation protocol, cross-validation and freeze-then-test pipeline, calibration and uncertainty analyses, feature interpretation, drafting and integration of the report |
+| Li Erteng | KNN; Decision Tree | Shared split, cross-validation and experiment records | Verification of the frozen configuration, experimental-design section, rank-comparison analysis, corresponding slides |
+| Jiang Chengrui | Random Forest; AdaBoost | Results visualisation and threshold analysis | Threshold optimisation and cost-sensitivity analysis over five ratios, out-of-fold cost figures, results section on thresholds, corresponding slides |
 
-All members reviewed the shared pipeline, can explain their models, and contributed to the report and presentation. *(Wording to be confirmed by all members.)*
+All members reviewed the shared pipeline, can explain their models, and contributed to the report and presentation. *(Wording and percentages to be confirmed by all members.)*
 
 ## References
 
