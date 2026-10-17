@@ -78,7 +78,7 @@ Gaussian NB 只用一套默认配置：PAY 改用 one-hot 时 AP 的变化（0.0
 
 ## 3a. 测试集结果（已评估一次，2026-10-16）
 
-测试集 9,003 人，违约率 22.10%。冻结清单 commit `ab4d14a`，输出在 `results/tables/test_*.csv`，拟合好的 pipeline 在 `models/`。
+测试集 9,003 人，违约率 22.10%。冻结清单 commit `c40369e`（10/17 远端历史重写前为 `ab4d14a`，文件内容未变），输出在 `results/tables/test_*.csv`，拟合好的 pipeline 在 `models/`。
 
 **排序与校准**
 
